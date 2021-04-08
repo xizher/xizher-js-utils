@@ -1,6 +1,6 @@
 {
   "name": "@xizher/js-utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "JavaScript 常用工具继承库",
   "main": "dist/index.js",
   "scripts": {
