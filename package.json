@@ -1,7 +1,7 @@
 {
   "name": "@xizher/js-utils",
   "version": "1.0.0",
-  "description": "js-utils",
+  "description": "JavaScript 常用工具继承库",
   "main": "dist/index.js",
   "scripts": {
     "test": "nodemon --exec npx jest jest",
