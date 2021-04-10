@@ -1,8 +1,11 @@
-export const storageUtils = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.storageUtils = void 0;
+exports.storageUtils = {
     local: {
         set(key, value) {
             localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
-            return storageUtils.local;
+            return exports.storageUtils.local;
         },
         get(key) {
             const value = localStorage.getItem(key);
@@ -24,17 +27,17 @@ export const storageUtils = {
         },
         remove(key) {
             localStorage.removeItem(key);
-            return storageUtils.local;
+            return exports.storageUtils.local;
         },
         clear() {
             localStorage.clear();
-            return storageUtils.local;
+            return exports.storageUtils.local;
         }
     },
     session: {
         set(key, value) {
             sessionStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
-            return storageUtils.session;
+            return exports.storageUtils.session;
         },
         get(key) {
             const value = sessionStorage.getItem(key);
@@ -56,11 +59,11 @@ export const storageUtils = {
         },
         remove(key) {
             sessionStorage.removeItem(key);
-            return storageUtils.session;
+            return exports.storageUtils.session;
         },
         clear() {
             sessionStorage.clear();
-            return storageUtils.session;
+            return exports.storageUtils.session;
         }
     },
 };

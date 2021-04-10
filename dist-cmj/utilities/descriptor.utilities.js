@@ -1,6 +1,9 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.descriptorUtils = void 0;
 /* eslint-disable @typescript-eslint/ban-types */
 /** 装饰器工具 */
-export const descriptorUtils = {
+exports.descriptorUtils = {
     /** 自动绑定this上下文装饰器 */
     AutoBind(target, key, descriptor) {
         const fn = descriptor.value;
@@ -36,8 +39,8 @@ export const descriptorUtils = {
         };
         return ret;
     },
-    /** 防抖 */
-    throttle(wait, options = { leading: true, trailing: true }) {
+    /** 节流 */
+    Throttle(wait, options = { leading: true, trailing: true }) {
         let handle = null, previous = 0;
         const ret = (target, key, descriptor) => {
             return Object.assign({}, descriptor, {
@@ -68,4 +71,4 @@ export const descriptorUtils = {
         return ret;
     },
 };
-export default descriptorUtils;
+exports.default = exports.descriptorUtils;

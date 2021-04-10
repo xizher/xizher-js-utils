@@ -1,10 +1,13 @@
+"use strict";
 /*
  * 描述：基础工具集
  * 作者：ngheizit on 2021年3月4日
  * 联系方式：xizher@163.com | 198907836@qq.com
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.baseUtils = void 0;
 /** 基础工具集 */
-export const baseUtils = {
+exports.baseUtils = {
     /**
      * 深度复制（采用JSON解析方式）
      * @param obj 复制对象
@@ -21,7 +24,7 @@ export const baseUtils = {
         for (const key in obj) {
             if (Object.prototype.hasOwnProperty.call(obj, key)) {
                 newObj[key] = typeof obj[key] === 'object' && obj[key] !== null
-                    ? baseUtils.deepCopy(obj[key])
+                    ? exports.baseUtils.deepCopy(obj[key])
                     : obj[key];
             }
         }
@@ -111,7 +114,7 @@ export const baseUtils = {
                         else {
                             clone = src && isPlainObject(src) ? src : {};
                         }
-                        target[name] = baseUtils.$extend(deep, clone, copy); // eslint-disable-line
+                        target[name] = exports.baseUtils.$extend(deep, clone, copy); // eslint-disable-line
                     }
                     else if (copy !== undefined) {
                         target[name] = copy;

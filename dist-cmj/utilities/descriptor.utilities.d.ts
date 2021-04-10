@@ -4,8 +4,8 @@ export declare const descriptorUtils: {
     AutoBind<T extends Function>(target: Object, key: string | symbol, descriptor: TypedPropertyDescriptor<T>): PropertyDescriptor;
     /** 防抖 */
     Debounce(timeout: number): MethodDecorator;
-    /** 防抖 */
-    throttle(wait: number, options?: {
+    /** 节流 */
+    Throttle(wait: number, options?: {
         leading: boolean;
         trailing: boolean;
     }): MethodDecorator;

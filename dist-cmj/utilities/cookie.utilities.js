@@ -1,13 +1,16 @@
+"use strict";
 /*
  * 描述：Cookie工具集
  * 作者：ngheizit on 2021年3月4日
  * 联系方式：xizher@163.com | 198907836@qq.com
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.cookieUtils = void 0;
 const M_SECONDS_A_DAY = 86400000;
 const M_SECONDS_A_HOUR = 3600000;
 const M_SECONDS_A_MINUTE = 60000;
 /** Cookie工具集 */
-export const cookieUtils = {
+exports.cookieUtils = {
     /**
      * 设置Cookie
      * @param key Cookie Key值
