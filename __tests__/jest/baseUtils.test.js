@@ -59,4 +59,9 @@ test('$extend: can run true', () => {
   expect(obj.b.b2).toBe(3)
 })
 
+test('getArrayItemRandom: can run true', () => {
+  const arr = [1, 2, 4, 5]
+  const item = baseUtils.getArrayItemRandom(arr)
+  expect(arr.includes(item)).toBe(true)
+})
 

@@ -71,4 +71,9 @@ export declare const baseUtils: {
      * @param jsUrl JS路径
      */
     loadJs(jsUrl: string): void;
+    /**
+     * 随机获取数组的其中一个子集
+     * @param arr 数组
+     */
+    getArrayItemRandom<T_5>(arr: T_5[]): T_5;
 };

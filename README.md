@@ -22,6 +22,7 @@ npm install @xizher/js-utils
 | throttle ()            | 节流                                 |
 | loadCss ()             | 加载css                              |
 | loadJs ()              | 加载js                               |
+| getArrayItemRandom ()  | 随机获取数组中的一个子集                               |
 
 ### cookieUtils
 

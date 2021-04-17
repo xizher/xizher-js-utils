@@ -233,4 +233,13 @@ export const baseUtils = {
     document.head.appendChild(script)
   },
 
+  /**
+   * 随机获取数组的其中一个子集
+   * @param arr 数组
+   */
+  getArrayItemRandom<T> (arr: T[]) : T {
+    const index = baseUtils.createIntRandom(0, arr.length - 1)
+    return arr[index]
+  }
+
 }
