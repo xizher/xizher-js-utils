@@ -217,4 +217,12 @@ exports.baseUtils = {
         script.src = jsUrl;
         document.head.appendChild(script);
     },
+    /**
+     * 随机获取数组的其中一个子集
+     * @param arr 数组
+     */
+    getArrayItemRandom(arr) {
+        const index = exports.baseUtils.createIntRandom(0, arr.length - 1);
+        return arr[index];
+    }
 };

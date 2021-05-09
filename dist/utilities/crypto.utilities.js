@@ -14,9 +14,9 @@ export const cryptoUtils = {
         STRING_CRYPTO_IV = iv;
         return cryptoUtils;
     },
-    encrypto(str) {
-        const key = Utf8.parse(STRING_CRYPTO_KEY);
-        const iv = Utf8.parse(STRING_CRYPTO_IV);
+    encrypto(str, options = {}) {
+        const key = Utf8.parse(options.key ?? STRING_CRYPTO_KEY);
+        const iv = Utf8.parse(options.iv ?? STRING_CRYPTO_IV);
         const newVal = Utf8.parse(str);
         const encrypted = AES.encrypt(newVal, key, {
             iv,
@@ -25,9 +25,9 @@ export const cryptoUtils = {
         });
         return encrypted.ciphertext.toString();
     },
-    decrypto(str) {
-        const key = Utf8.parse(STRING_CRYPTO_KEY);
-        const iv = Utf8.parse(STRING_CRYPTO_IV);
+    decrypto(str, options = {}) {
+        const key = Utf8.parse(options.key ?? STRING_CRYPTO_KEY);
+        const iv = Utf8.parse(options.iv ?? STRING_CRYPTO_IV);
         const encryptedHexStr = Hex.parse(str);
         const newVal = Base64.stringify(encryptedHexStr);
         const decrypt = AES.decrypt(newVal, key, {

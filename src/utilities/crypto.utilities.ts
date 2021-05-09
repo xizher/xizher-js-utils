@@ -6,11 +6,16 @@ import Pkcs7 from 'crypto-js/pad-pkcs7'
 let STRING_CRYPTO_IV = '5201314'
 let STRING_CRYPTO_KEY = '5201314520131452013145201314'
 
+export interface ICryptoOptions {
+  key?: string
+  iv?: string
+}
+
 export interface ICryptoUtils {
   setGlobelKey (key: string) : ICryptoUtils
   setGlobelIV (iv: string) : ICryptoUtils
-  encrypto (str: string) : string
-  decrypto (str: string) : string
+  encrypto (str: string, options: ICryptoOptions) : string
+  decrypto (str: string, options: ICryptoOptions) : string
 }
 
 export const cryptoUtils : ICryptoUtils = {
@@ -22,9 +27,9 @@ export const cryptoUtils : ICryptoUtils = {
     STRING_CRYPTO_IV = iv
     return cryptoUtils
   },
-  encrypto (str: string) : string {
-    const key = Utf8.parse(STRING_CRYPTO_KEY)
-    const iv = Utf8.parse(STRING_CRYPTO_IV)
+  encrypto (str: string, options: ICryptoOptions = {}) : string {
+    const key = Utf8.parse(options.key ?? STRING_CRYPTO_KEY)
+    const iv = Utf8.parse(options.iv ?? STRING_CRYPTO_IV)
     const newVal = Utf8.parse(str)
     const encrypted = AES.encrypt(newVal, key, {
       iv,
@@ -33,9 +38,9 @@ export const cryptoUtils : ICryptoUtils = {
     })
     return encrypted.ciphertext.toString()
   },
-  decrypto (str: string) : string {
-    const key = Utf8.parse(STRING_CRYPTO_KEY)
-    const iv = Utf8.parse(STRING_CRYPTO_IV)
+  decrypto (str: string, options: ICryptoOptions = {}) : string {
+    const key = Utf8.parse(options.key ?? STRING_CRYPTO_KEY)
+    const iv = Utf8.parse(options.iv ?? STRING_CRYPTO_IV)
     const encryptedHexStr = Hex.parse(str)
     const newVal = Base64.stringify(encryptedHexStr)
     const decrypt = AES.decrypt(newVal, key, {

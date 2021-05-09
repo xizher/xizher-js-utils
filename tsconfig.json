@@ -6,7 +6,6 @@
     "sourceMap": false,
     "rootDir":"./src",
     "outDir":"./dist",
-    "watch":true,
     "esModuleInterop":true,
     "declaration": true,
     "skipLibCheck": true,

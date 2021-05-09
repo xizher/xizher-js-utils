@@ -6,7 +6,8 @@
   "main": "dist-cmj/index.js",
   "scripts": {
     "test": "nodemon --exec npx jest jest",
-    "build": "npx tsc -w"
+    "build": "npx tsc --module CommonJS --outDir ./dist-cmj & npx tsc",
+    "build:test": "npx tsc -w"
   },
   "repository": {
     "type": "git",
