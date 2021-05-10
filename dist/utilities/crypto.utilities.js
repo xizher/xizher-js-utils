@@ -1,8 +1,8 @@
-import { AES, mode } from 'crypto-js';
 import Utf8 from 'crypto-js/enc-utf8';
 import Base64 from 'crypto-js/enc-base64';
 import Hex from 'crypto-js/enc-hex';
 import Pkcs7 from 'crypto-js/pad-pkcs7';
+import AES from 'crypto-js/aes';
 let STRING_CRYPTO_IV = '5201314';
 let STRING_CRYPTO_KEY = '5201314520131452013145201314';
 export const cryptoUtils = {
@@ -20,7 +20,6 @@ export const cryptoUtils = {
         const newVal = Utf8.parse(str);
         const encrypted = AES.encrypt(newVal, key, {
             iv,
-            mode: mode.CBC,
             padding: Pkcs7,
         });
         return encrypted.ciphertext.toString();
@@ -32,7 +31,6 @@ export const cryptoUtils = {
         const newVal = Base64.stringify(encryptedHexStr);
         const decrypt = AES.decrypt(newVal, key, {
             iv,
-            mode: mode.CBC,
             padding: Pkcs7
         });
         const decryptedStr = decrypt.toString(Utf8);

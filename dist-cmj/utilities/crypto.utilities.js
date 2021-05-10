@@ -4,11 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cryptoUtils = void 0;
-const crypto_js_1 = require("crypto-js");
 const enc_utf8_1 = __importDefault(require("crypto-js/enc-utf8"));
 const enc_base64_1 = __importDefault(require("crypto-js/enc-base64"));
 const enc_hex_1 = __importDefault(require("crypto-js/enc-hex"));
 const pad_pkcs7_1 = __importDefault(require("crypto-js/pad-pkcs7"));
+const aes_1 = __importDefault(require("crypto-js/aes"));
+const cipher_core_1 = __importDefault(require("crypto-js/cipher-core"));
 let STRING_CRYPTO_IV = '5201314';
 let STRING_CRYPTO_KEY = '5201314520131452013145201314';
 exports.cryptoUtils = {
@@ -24,9 +25,9 @@ exports.cryptoUtils = {
         const key = enc_utf8_1.default.parse(options.key ?? STRING_CRYPTO_KEY);
         const iv = enc_utf8_1.default.parse(options.iv ?? STRING_CRYPTO_IV);
         const newVal = enc_utf8_1.default.parse(str);
-        const encrypted = crypto_js_1.AES.encrypt(newVal, key, {
+        const encrypted = aes_1.default.encrypt(newVal, key, {
             iv,
-            mode: crypto_js_1.mode.CBC,
+            mode: cipher_core_1.default,
             padding: pad_pkcs7_1.default,
         });
         return encrypted.ciphertext.toString();
@@ -36,9 +37,9 @@ exports.cryptoUtils = {
         const iv = enc_utf8_1.default.parse(options.iv ?? STRING_CRYPTO_IV);
         const encryptedHexStr = enc_hex_1.default.parse(str);
         const newVal = enc_base64_1.default.stringify(encryptedHexStr);
-        const decrypt = crypto_js_1.AES.decrypt(newVal, key, {
+        const decrypt = aes_1.default.decrypt(newVal, key, {
             iv,
-            mode: crypto_js_1.mode.CBC,
+            mode: cipher_core_1.default,
             padding: pad_pkcs7_1.default
         });
         const decryptedStr = decrypt.toString(enc_utf8_1.default);
