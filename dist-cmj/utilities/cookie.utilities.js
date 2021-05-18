@@ -31,6 +31,7 @@ exports.cookieUtils = {
         const cookie = `${key}=${escape(_value)};expires=${exp.toGMTString()}`;
         /* eslint-enable */
         document.cookie = cookie;
+        return this;
     },
     /**
      * 删除Cookie
@@ -42,6 +43,7 @@ exports.cookieUtils = {
         // @ts-ignore: exp.toGMTString()
         document.cookie = `${key}=;expires=${exp.toGMTString()}`;
         /* eslint-enable */
+        return this;
     },
     /**
      * 获取Cookie

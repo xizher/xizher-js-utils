@@ -9,7 +9,6 @@ const enc_base64_1 = __importDefault(require("crypto-js/enc-base64"));
 const enc_hex_1 = __importDefault(require("crypto-js/enc-hex"));
 const pad_pkcs7_1 = __importDefault(require("crypto-js/pad-pkcs7"));
 const aes_1 = __importDefault(require("crypto-js/aes"));
-const cipher_core_1 = __importDefault(require("crypto-js/cipher-core"));
 let STRING_CRYPTO_IV = '5201314';
 let STRING_CRYPTO_KEY = '5201314520131452013145201314';
 exports.cryptoUtils = {
@@ -27,7 +26,6 @@ exports.cryptoUtils = {
         const newVal = enc_utf8_1.default.parse(str);
         const encrypted = aes_1.default.encrypt(newVal, key, {
             iv,
-            mode: cipher_core_1.default,
             padding: pad_pkcs7_1.default,
         });
         return encrypted.ciphertext.toString();
@@ -39,7 +37,6 @@ exports.cryptoUtils = {
         const newVal = enc_base64_1.default.stringify(encryptedHexStr);
         const decrypt = aes_1.default.decrypt(newVal, key, {
             iv,
-            mode: cipher_core_1.default,
             padding: pad_pkcs7_1.default
         });
         const decryptedStr = decrypt.toString(enc_utf8_1.default);
