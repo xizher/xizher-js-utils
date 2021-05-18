@@ -14,8 +14,15 @@ export interface ICookieExpiredOptions {
   minutes?: number
 }
 
+export interface ICookieUtils {
+  set<T>(key: string, value: T, options?: ICookieExpiredOptions): ICookieUtils;
+  del(key: string): ICookieUtils;
+  get(key: string): string | null;
+  getUseJSON<T>(key: string): T;
+}
+
 /** Cookie工具集 */
-export const cookieUtils = {
+export const cookieUtils : ICookieUtils = {
 
   /**
    * 设置Cookie
@@ -29,7 +36,7 @@ export const cookieUtils = {
     options: ICookieExpiredOptions = {
       days: 0, hours: 0, minutes: 30
     }
-  ) : void {
+  ) : ICookieUtils {
     const { days, hours, minutes } = options
     const exp = new Date()
     exp.setTime(exp.getTime() + (days * M_SECONDS_A_DAY) + hours * M_SECONDS_A_HOUR + minutes * M_SECONDS_A_MINUTE)
@@ -41,18 +48,20 @@ export const cookieUtils = {
     const cookie = `${key}=${escape(_value)};expires=${exp.toGMTString()}`
     /* eslint-enable */
     document.cookie = cookie
+    return this
   },
 
   /**
    * 删除Cookie
    * @param key Cookie Key值
    */
-  del (key: string) : void {
+  del (key: string) : ICookieUtils {
     const exp = new Date()
     /* eslint-disable */
     // @ts-ignore: exp.toGMTString()
     document.cookie = `${key}=;expires=${exp.toGMTString()}`
     /* eslint-enable */
+    return this
   },
 
   /**
